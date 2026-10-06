@@ -2086,8 +2086,8 @@ body::before {
     border: 1px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
-    color: inherit;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
+    color: #FFFFFF;
 }
 
 .cert-card:hover {
@@ -2118,6 +2118,7 @@ body::before {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    color: #FFFFFF;
 }
 
 .cert-name {
@@ -2125,11 +2126,12 @@ body::before {
     font-size: 18px;
     font-weight: 800;
     line-height: 1.25;
+    color: #FFFFFF;
 }
 
 .cert-issuer {
     font-size: 14px;
-    color: var(--text-secondary);
+    color: #FFFFFF;
 }
 
 .cert-date {
@@ -2138,6 +2140,7 @@ body::before {
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.06em;
+    color: #FFFFFF;
 }
 
 .cert-verify {
@@ -2154,7 +2157,7 @@ body::before {
 
 .certs-note {
     margin-top: var(--space-2xl);
-    color: var(--text-muted);
+    color: #FFFFFF;
 }
 
 .certs-note a {
