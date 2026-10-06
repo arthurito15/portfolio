@@ -1634,6 +1634,10 @@ body::before {
     color: #FFFFFF;
 }
 
+.hero-title {
+    color: #FFFFFF;
+}
+
 .capability-desc {
     font-size: var(--fs-body);
     line-height: 1.6;
@@ -1657,7 +1661,7 @@ body::before {
     padding: 4px 10px;
     border: 1px solid var(--border);
     border-radius: 6px;
-    color: var(--text-secondary);
+    color: #FFFFFF;
 }
 
 /* Clickable tags (e.g. the certifications row linking to the certs page) */
