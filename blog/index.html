@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- No-JS guard: add .js to <html> immediately so reveal/cursor styles only apply when JS runs -->
+    <script>document.documentElement.classList.add('js');</script>
+
+    <meta name="description"
+        content="Writing by Jane Doe — notes on AI automation, data analytics, and building in public.">
+    <meta name="theme-color" content="#A60321">
+    <link rel="canonical" href="https://example.com/blog/">
+
+    <!-- Open Graph / Twitter Card for link previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jane Doe">
+    <meta property="og:title" content="Blog — Jane Doe">
+    <meta property="og:description" content="Notes on AI automation, data analytics, and building in public.">
+    <meta property="og:url" content="https://example.com/blog/">
+    <meta property="og:image" content="https://example.com/assets/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog — Jane Doe">
+    <meta name="twitter:description" content="Notes on AI automation, data analytics, and building in public.">
+    <meta name="twitter:image" content="https://example.com/assets/images/og-card.jpg">
+
+    <title>Blog — Jane Doe</title>
+
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+</head>
+
+<body class="subpage">
+
+    <!-- ═══ CUSTOM CURSOR ═══ -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">UlrichArthur</a>
+            
+            <div class="nav-links">
+                <a href="../index.html#about" class="nav-link">
+                    <span>About</span>
+                    <span>About</span>
+                </a>
+                <a href="../index.html#skills" class="nav-link">
+                    <span>Skills</span>
+                    <span>Skills</span>
+                </a>
+                <a href="../index.html#experience" class="nav-link">
+                    <span>Experience</span>
+                    <span>Experience</span>
+                </a>
+                <a href="../certifications.html" class="nav-link">
+                    <span>Certs</span>
+                    <span>Certs</span>
+                </a>
+                <a href="index.html" class="nav-link active">
+                    <span>Blog</span>
+                    <span>Blog</span>
+                </a>
+                <a href="../index.html#contact" class="nav-link">
+                    <span>Contacts</span>
+                    <span>Contacts</span>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="mobileOverlay">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-nav-links">
+            <a href="../index.html#about" class="mobile-nav-link">About</a>
+            <a href="../index.html#skills" class="mobile-nav-link">Skills</a>
+            <a href="../index.html#experience" class="mobile-nav-link">Experience</a>
+            <a href="../certifications.html" class="mobile-nav-link">Certs</a>
+            <a href="index.html" class="mobile-nav-link">Blog</a>
+            <a href="../index.html#contact" class="mobile-nav-link">Contacts</a>
+        </div>
+        
+    </div>
+
+    <!-- ═══ BLOG INDEX ═══ -->
+    <section class="blog-page" id="blog">
+        <div class="container">
+            <div class="blog-header reveal">
+                <a href="../index.html" class="certs-back">← Back to home</a>
+                <p class="section-label"> Writing</p>
+                <h1 class="heading-section">Blog</h1>
+                <p class="text-body">Notes on AI automation, data analytics, and building in public — written as I
+                    learn. New posts land here.</p>
+            </div>
+
+            <!-- ════════════════════════════════════════════════════════════════
+                 POST LIST
+                 To add a post: 1) copy blog/_template.html to blog/<slug>.html and
+                 fill it in, then 2) add a new <a class="post-card"> block at the TOP
+                 of this list (newest first). Keep the date in both places in sync.
+            ═════════════════════════════════════════════════════════════════ -->
+            <div class="post-list">
+
+                <a href="building-this-site-with-ai.html" class="post-card reveal">
+                    <div class="post-card-meta">
+                        <span class="post-card-date">Jun 5, 2026</span>
+                        <span class="post-card-readtime">3 min read</span>
+                    </div>
+                    <h2 class="post-card-title">Building this site with AI — and why I&rsquo;m writing here</h2>
+                    <p class="post-card-dek">Kicking off the blog: what this space is for, how I rebuilt the portfolio
+                        with an AI agent in the loop, and what I want to share going forward.</p>
+                    <div class="post-card-tags">
+                        <span class="tag">Building in public</span>
+                        <span class="tag">AI</span>
+                    </div>
+                    <span class="post-card-arrow" aria-hidden="true">Read →</span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container footer-grid">
+           <div class="footer-brand">
+                <a href="#hero" class="footer-logo">UlrichArthur</a>
+                <p class="footer-tagline"> Data scientist· data analyst · AI automation builder.</p>
+                <p class="footer-meta">Machine Learning &amp; AI.</p>
+            </div>
+            <nav class="footer-col" aria-label="Footer navigation">
+                <span class="footer-col-label">// Navigate</span>
+                <a href="../index.html#about" class="footer-link">About</a>
+                <a href="../index.html#skills" class="footer-link">Skills</a>
+                <a href="../index.html#capabilities" class="footer-link">Capabilities</a>
+                <a href="../index.html#creator" class="footer-link">Creator</a>
+                <a href="../index.html#experience" class="footer-link">Experience</a>
+                <a href="../certifications.html" class="footer-link">Certifications</a>
+                <a href="index.html" class="footer-link">Blog</a>
+                <a href="../index.html#contact" class="footer-link">Contact</a>
+            </nav>
+            <div class="footer-col">
+                <span class="footer-col-label">Social Media</span>
+                <div class="footer-socials">
+                    <a href="https://github.com/arthurito15" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/ulrich-arthur-konkobo/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a href="mailto:konkoboulricharthur@gmail.com" class="footer-social" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span class="footer-text">© <span id="year">2026</span> Ulrich Arthur</span>
+            <a href="#navbar" class="footer-top-link">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

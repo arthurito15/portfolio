@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- No-JS guard: add .js to <html> immediately so reveal/cursor styles only apply when JS runs -->
+    <script>document.documentElement.classList.add('js');</script>
+
+    <meta name="description"
+        content="Why I'm starting this blog, how I rebuilt my portfolio with an AI agent in the loop, and what I want to share going forward.">
+    <meta name="theme-color" content="#A60321">
+    <link rel="canonical" href="https://example.com/blog/building-this-site-with-ai.html">
+
+    <!-- Open Graph / Twitter Card for link previews -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jane Doe">
+    <meta property="og:title" content="Building this site with AI — and why I'm writing here">
+    <meta property="og:description" content="Why I'm starting this blog, how I rebuilt my portfolio with an AI agent in the loop, and what I want to share going forward.">
+    <meta property="og:url" content="https://example.com/blog/building-this-site-with-ai.html">
+    <meta property="og:image" content="https://example.com/assets/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building this site with AI — and why I'm writing here">
+    <meta name="twitter:description" content="Why I'm starting this blog, how I rebuilt my portfolio with an AI agent in the loop, and what I want to share going forward.">
+    <meta name="twitter:image" content="https://example.com/assets/images/og-card.jpg">
+
+    <title>Building this site with AI — Jane Doe</title>
+
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+</head>
+
+<body class="subpage">
+
+    <!-- ═══ CUSTOM CURSOR ═══ -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">JANE.dev</a>
+            <div class="nav-counter">
+                <span class="count js-contrib-count" id="synapseCount">0</span>
+                <span>GitHub contributions in 2026</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html#about" class="nav-link">
+                    <span>About</span>
+                    <span>About</span>
+                </a>
+                <a href="../index.html#skills" class="nav-link">
+                    <span>Skills</span>
+                    <span>Skills</span>
+                </a>
+                <a href="../index.html#experience" class="nav-link">
+                    <span>Experience</span>
+                    <span>Experience</span>
+                </a>
+                <a href="../certifications.html" class="nav-link">
+                    <span>Certs</span>
+                    <span>Certs</span>
+                </a>
+                <a href="index.html" class="nav-link active">
+                    <span>Blog</span>
+                    <span>Blog</span>
+                </a>
+                <a href="../index.html#contact" class="nav-link">
+                    <span>Signal</span>
+                    <span>Signal</span>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="mobileOverlay">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-nav-links">
+            <a href="../index.html#about" class="mobile-nav-link">About</a>
+            <a href="../index.html#skills" class="mobile-nav-link">Skills</a>
+            <a href="../index.html#experience" class="mobile-nav-link">Experience</a>
+            <a href="../certifications.html" class="mobile-nav-link">Certs</a>
+            <a href="index.html" class="mobile-nav-link">Blog</a>
+            <a href="../index.html#contact" class="mobile-nav-link">Signal</a>
+        </div>
+        <div class="mobile-counter">
+            <span class="count js-contrib-count">0</span>
+            <span>GitHub contributions in 2026</span>
+        </div>
+    </div>
+
+    <!-- ═══ POST ═══ -->
+    <article class="post-article">
+        <div class="container container-narrow">
+            <header class="post-header reveal">
+                <a href="index.html" class="certs-back">← All posts</a>
+                <div class="post-card-meta">
+                    <span class="post-card-date">Jun 5, 2026</span>
+                    <span class="post-card-readtime">3 min read</span>
+                </div>
+                <h1 class="post-title">Building this site with AI — and why I&rsquo;m writing here</h1>
+                <div class="post-card-tags">
+                    <span class="tag">Building in public</span>
+                    <span class="tag">AI</span>
+                </div>
+            </header>
+
+            <div class="post-content reveal">
+                <p>This is the first post on a blog I&rsquo;ve been meaning to start for a while. I build things with
+                    AI &mdash; automations, data tools, small apps &mdash; and most of that work happens quietly. This
+                    space is where I&rsquo;ll think out loud about it.</p>
+
+                <h2>Why a blog</h2>
+                <p>I learn fastest when I have to explain something. Writing forces me to turn a vague &ldquo;that
+                    worked&rdquo; into an actual reason. So the goal here is selfish first: better notes for me. If
+                    they&rsquo;re useful to you too, even better.</p>
+                <p>Expect short, practical posts &mdash; what I tried, what broke, and what I&rsquo;d do differently.</p>
+
+                <h2>How I rebuilt this site</h2>
+                <p>The portfolio you&rsquo;re reading this on was rebuilt with an AI agent in the loop. Not
+                    &ldquo;generate a website&rdquo; in one shot &mdash; more like pairing: I described what I wanted,
+                    reviewed every change, and kept the parts that earned their place.</p>
+                <blockquote>The interesting skill isn&rsquo;t writing the prompt. It&rsquo;s knowing what to keep.</blockquote>
+                <p>A few things I leaned on:</p>
+                <ul>
+                    <li>One small, reviewable change at a time &mdash; never a giant rewrite.</li>
+                    <li>Real data over fake numbers: the contributions heatmap on the home page pulls my live GitHub
+                        activity instead of hard-coded stats.</li>
+                    <li>Keeping it boring under the hood &mdash; plain HTML, CSS, and vanilla JS, no build step.</li>
+                </ul>
+
+                <h2>What&rsquo;s next</h2>
+                <p>More posts on the automations I&rsquo;m building, the data work I do day to day, and the occasional
+                    teardown of something I found clever. If any of that sounds interesting, the links in the footer are
+                    the best way to follow along.</p>
+                <p>Thanks for reading. &mdash; Jane</p>
+            </div>
+
+            <div class="post-footer reveal">
+                <a href="index.html" class="btn-ghost">← Back to all posts</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="../index.html" class="footer-logo">JANE.dev</a>
+                <p class="footer-tagline">AI automation builder · data analyst · building in public from San Francisco.</p>
+                <p class="footer-meta">Built with AI &amp; shipped in public.</p>
+            </div>
+            <nav class="footer-col" aria-label="Footer navigation">
+                <span class="footer-col-label">// Navigate</span>
+                <a href="../index.html#about" class="footer-link">About</a>
+                <a href="../index.html#skills" class="footer-link">Skills</a>
+                <a href="../index.html#capabilities" class="footer-link">Capabilities</a>
+                <a href="../index.html#creator" class="footer-link">Creator</a>
+                <a href="../index.html#experience" class="footer-link">Experience</a>
+                <a href="../certifications.html" class="footer-link">Certifications</a>
+                <a href="index.html" class="footer-link">Blog</a>
+                <a href="../index.html#contact" class="footer-link">Contact</a>
+            </nav>
+            <div class="footer-col">
+                <span class="footer-col-label">// Elsewhere</span>
+                <div class="footer-socials">
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/yourusername/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                    <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://x.com/yourusername" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="X (Twitter)"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+                    <a href="mailto:you@example.com" class="footer-social" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span class="footer-text">© <span id="year">2026</span> Jane Doe</span>
+            <a href="#navbar" class="footer-top-link">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

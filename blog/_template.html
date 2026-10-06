@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║  BLOG POST TEMPLATE — how to publish a new post                       ║
+  ║                                                                        ║
+  ║  1. Copy this file to blog/<slug>.html  (slug = url-safe-title).       ║
+  ║  2. Fill in every {{PLACEHOLDER}} below (title, description, date,     ║
+  ║     read time, tags, and the <div class="post-content"> body).        ║
+  ║  3. Remove this comment and the noindex meta tag.                      ║
+  ║  4. Add a matching <a class="post-card"> block to the TOP of the       ║
+  ║     .post-list in blog/index.html (newest first).                      ║
+  ║  5. Add a <url> entry for the post in /sitemap.xml.                    ║
+  ║                                                                        ║
+  ║  Body building blocks (inside .post-content): <p>, <h2>, <h3>,         ║
+  ║  <ul>/<ol><li>, <blockquote>, <a href>, <pre><code>, inline <code>,    ║
+  ║  and <img> (always set width & height to avoid layout shift).         ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+
+    <!-- No-JS guard: add .js to <html> immediately so reveal/cursor styles only apply when JS runs -->
+    <script>document.documentElement.classList.add('js');</script>
+
+    <meta name="description" content="{{POST_DESCRIPTION}}">
+    <meta name="theme-color" content="#A60321">
+    <link rel="canonical" href="https://example.com/blog/{{SLUG}}.html">
+
+    <!-- Open Graph / Twitter Card for link previews -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jane Doe">
+    <meta property="og:title" content="{{POST_TITLE}}">
+    <meta property="og:description" content="{{POST_DESCRIPTION}}">
+    <meta property="og:url" content="https://example.com/blog/{{SLUG}}.html">
+    <meta property="og:image" content="https://example.com/assets/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{POST_TITLE}}">
+    <meta name="twitter:description" content="{{POST_DESCRIPTION}}">
+    <meta name="twitter:image" content="https://example.com/assets/images/og-card.jpg">
+
+    <title>{{POST_TITLE}} — Jane Doe</title>
+
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+</head>
+
+<body class="subpage">
+
+    <!-- ═══ CUSTOM CURSOR ═══ -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">JANE.dev</a>
+            <div class="nav-counter">
+                <span class="count js-contrib-count" id="synapseCount">0</span>
+                <span>GitHub contributions in 2026</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html#about" class="nav-link">
+                    <span>About</span>
+                    <span>About</span>
+                </a>
+                <a href="../index.html#skills" class="nav-link">
+                    <span>Skills</span>
+                    <span>Skills</span>
+                </a>
+                <a href="../index.html#experience" class="nav-link">
+                    <span>Experience</span>
+                    <span>Experience</span>
+                </a>
+                <a href="../certifications.html" class="nav-link">
+                    <span>Certs</span>
+                    <span>Certs</span>
+                </a>
+                <a href="index.html" class="nav-link active">
+                    <span>Blog</span>
+                    <span>Blog</span>
+                </a>
+                <a href="../index.html#contact" class="nav-link">
+                    <span>Signal</span>
+                    <span>Signal</span>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="mobileOverlay">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-nav-links">
+            <a href="../index.html#about" class="mobile-nav-link">About</a>
+            <a href="../index.html#skills" class="mobile-nav-link">Skills</a>
+            <a href="../index.html#experience" class="mobile-nav-link">Experience</a>
+            <a href="../certifications.html" class="mobile-nav-link">Certs</a>
+            <a href="index.html" class="mobile-nav-link">Blog</a>
+            <a href="../index.html#contact" class="mobile-nav-link">Signal</a>
+        </div>
+        <div class="mobile-counter">
+            <span class="count js-contrib-count">0</span>
+            <span>GitHub contributions in 2026</span>
+        </div>
+    </div>
+
+    <!-- ═══ POST ═══ -->
+    <article class="post-article">
+        <div class="container container-narrow">
+            <header class="post-header reveal">
+                <a href="index.html" class="certs-back">← All posts</a>
+                <div class="post-card-meta">
+                    <span class="post-card-date">{{DATE e.g. Jun 5, 2026}}</span>
+                    <span class="post-card-readtime">{{N}} min read</span>
+                </div>
+                <h1 class="post-title">{{POST_TITLE}}</h1>
+                <div class="post-card-tags">
+                    <span class="tag">{{TAG_1}}</span>
+                    <span class="tag">{{TAG_2}}</span>
+                </div>
+            </header>
+
+            <div class="post-content reveal">
+                <p>{{Opening paragraph.}}</p>
+
+                <h2>{{Section heading}}</h2>
+                <p>{{Paragraph. Use <a href="...">links</a>, <strong>emphasis</strong>, and <code>inline code</code> as
+                    needed.}}</p>
+                <ul>
+                    <li>{{List item}}</li>
+                    <li>{{List item}}</li>
+                </ul>
+                <blockquote>{{A pull quote, optional.}}</blockquote>
+                <p>{{Closing paragraph. — Jane}}</p>
+            </div>
+
+            <div class="post-footer reveal">
+                <a href="index.html" class="btn-ghost">← Back to all posts</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="../index.html" class="footer-logo">JANE.dev</a>
+                <p class="footer-tagline">AI automation builder · data analyst · building in public from San Francisco.</p>
+                <p class="footer-meta">Built with AI &amp; shipped in public.</p>
+            </div>
+            <nav class="footer-col" aria-label="Footer navigation">
+                <span class="footer-col-label">// Navigate</span>
+                <a href="../index.html#about" class="footer-link">About</a>
+                <a href="../index.html#skills" class="footer-link">Skills</a>
+                <a href="../index.html#capabilities" class="footer-link">Capabilities</a>
+                <a href="../index.html#creator" class="footer-link">Creator</a>
+                <a href="../index.html#experience" class="footer-link">Experience</a>
+                <a href="../certifications.html" class="footer-link">Certifications</a>
+                <a href="index.html" class="footer-link">Blog</a>
+                <a href="../index.html#contact" class="footer-link">Contact</a>
+            </nav>
+            <div class="footer-col">
+                <span class="footer-col-label">// Elsewhere</span>
+                <div class="footer-socials">
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/yourusername/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                    <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://x.com/yourusername" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="X (Twitter)"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+                    <a href="mailto:you@example.com" class="footer-social" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span class="footer-text">© <span id="year">2026</span> Jane Doe</span>
+            <a href="#navbar" class="footer-top-link">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

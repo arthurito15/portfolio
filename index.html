@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- No-JS guard: add .js to <html> immediately so reveal/cursor styles only apply when JS runs -->
+    <script>document.documentElement.classList.add('js');</script>
+
+    <meta name="description"
+        content="Ulrich Arthur Data Scientist. I tell AI what to do and ship things that actually work, mostly on the Claude / Anthropic stack. Building in public on YouTube as Jane Builds.">
+    <meta name="theme-color" content="#A60321">
+    <link rel="canonical" href="https://example.com/">
+
+    <title>Ulrich Arthur Data Scientist</title>
+
+    <!-- Favicon: SVG monogram for modern browsers, .ico fallback for bots/legacy -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <rect width="64" height="64" rx="14" fill="#A60321"/>
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+    <!-- Open Graph / Twitter Card for link previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Ulrich Arthur">
+    <meta property="og:title" content="Ulrich Arthur Data Scientist">
+    <meta property="og:description"
+        content="I tell AI what to do and ship things that actually work — mostly Claude / Anthropic stack. Building in public on YouTube.">
+    <meta property="og:url" content="https://example.com/">
+    <meta property="og:image" content="https://example.com/assets/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ulrich Arthur Data Scientist">
+    <meta name="twitter:description"
+        content="I tell AI what to do and ship things that actually work — mostly Claude / Anthropic stack.">
+    <meta name="twitter:image" content="https://example.com/assets/images/og-card.jpg">
+
+    <!-- Structured data: helps search engines & AI surface "Ulrich Arthur" with the right links -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "KONKOBO Ulrich Arthur",
+      "url": "https://example.com/",
+      "image": "https://example.com/assets/images/og-card.jpg",
+      "jobTitle": "Data Scientist & AI Automation Builder",
+      "description": "AI automation builder and creator working mostly on the Claude / Anthropic stack. Building in public on YouTube as Jane Builds.",
+      "email": "mailto:konkoboulricharthur@gmail.com",
+      "address": { "@type": "69008", "addressLocality": "Lyon", "addressCountry": "FR" },
+      "sameAs": [
+        "https://github.com/arthurito15",
+        "https://www.linkedin.com/in/ulrich-arthur-konkobo/",
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+</head>
+
+<body>
+
+    <!-- ═══ CUSTOM CURSOR ═══ -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ═══ PRELOADER ═══ -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-logo">Arthur.dev</div>
+        <div class="preloader-bar"></div>
+    </div>
+
+    <!-- ═══ BACKGROUND AMBIENCE ═══
+         Drop a royalty-free looping track at assets/audio/ambient.mp3 (see the
+         README there). Everything degrades gracefully if the file is absent. -->
+    <!--audio id="bgAudio" loop preload="none" data-src="assets/audio/ambient.mp3"></audio-->
+
+    <!-- ═══ CINEMATIC ENTRY GATE (first visit per session) ═══ -->
+
+    <!--div class="entry-gate" id="entryGate" role="dialog" aria-modal="true" aria-label="Enter the site">
+        <div class="entry-gate-inner">
+            <p class="entry-gate-eyebrow">// data science · data analysis · reporting</p>
+            <h1 class="entry-gate-title" id="gateName" aria-label="Arthur">
+                <span id="gateNameText" aria-hidden="true">Arthur</span> 
+            </h1>
+            <p class="entry-gate-status" id="gateStatus" aria-hidden="true">
+                <span class="gate-spinner" id="gateSpinner">⠋</span>
+                <span class="gate-status-text" id="gateStatusText"></span>
+            </p>
+            <p class="entry-gate-sub">Best experienced with the sound on. Step in and take a look around.</p>
+            <div class="entry-gate-actions">
+                <button type="button" class="entry-gate-btn entry-gate-btn--primary" id="enterSound">
+                    <i class="fas fa-volume-high" aria-hidden="true"></i> Begin experience
+                </button>
+                <button type="button" class="entry-gate-btn entry-gate-btn--ghost" id="enterSilent">
+                    Enter without sound
+                </button>
+            </div>
+        </div>
+    </div-->
+
+    <!-- ═══ AUDIO TOGGLE (always available once inside) ═══ -->
+    <!--button type="button" class="audio-toggle" id="audioToggle" aria-label="Play background sound"
+        aria-pressed="false" hidden>
+        <span class="audio-toggle-bars" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+        </span>
+    </button-->
+
+    <!-- ═══ VERTICAL RULER (RIGHT SIDE) ═══ -->
+    <div class="scroll-ruler" id="scrollRuler">
+        <div class="ruler-track"></div>
+        <div class="ruler-ticks" id="rulerTicks"></div>
+    </div>
+    <div class="ruler-triangle" id="rulerTriangle"></div>
+    <!--div class="ruler-scanline" id="rulerScanline"></div-->
+
+    <!-- Ruler section labels (RIGHT side) -->
+    <div class="ruler-section-label" id="rulerLabel-hero">Topper</div>
+    <div class="ruler-section-label" id="rulerLabel-about">ABOUT</div>
+    <div class="ruler-section-label" id="rulerLabel-skills">TECH</div>
+    <div class="ruler-section-label" id="rulerLabel-capabilities">ABLE</div>
+    <div class="ruler-section-label" id="rulerLabel-certifications">CERT </div>
+    <div class="ruler-section-label" id="rulerLabel-experience">EXP</div>
+    <div class="ruler-section-label" id="rulerLabel-contact">CONTACT</div>
+
+    <!-- ═══ FLOATING CTA (follows ruler on RIGHT) ═══ -->
+    <a href="#contact" class="floating-cta" id="floatingCta">
+        <span class="pulse-dot"></span>
+        LET'S TALK
+    </a>
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">UlrichArthur</a>
+            <!--div class="nav-counter">
+                <span class="count js-contrib-count" id="synapseCount">0</span>
+                <span>GitHub contributions</span>
+            </div-->
+            <div class="nav-links">
+                <a href="#about" class="nav-link">
+                    <span>About</span>
+                    <span>About</span>
+                </a>
+                <a href="#skills" class="nav-link">
+                    <span>Skills</span>
+                    <span>Skills</span>
+                </a>
+                <a href="#experience" class="nav-link">
+                    <span>Experience</span>
+                    <span>Experience</span>
+                </a>
+                <a href="certifications.html" class="nav-link">
+                    <span>Certifications</span>
+                    <span>Certifications</span>
+                </a>
+                <a href="blog/index.html" class="nav-link">
+                    <span>Blog</span>
+                    <span>Blog</span>
+                </a>
+                <a href="#contact" class="nav-link">
+                    <span>Contact</span>
+                    <span>Contact</span>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Open menu"
+                aria-expanded="false" aria-controls="mobileOverlay">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-nav-links">
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#skills" class="mobile-nav-link">Skills</a>
+            <a href="#experience" class="mobile-nav-link">Experience</a>
+            <a href="certifications.html" class="mobile-nav-link">Certs</a>
+            <a href="blog/index.html" class="mobile-nav-link">Blog</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+        </div>
+        <!--div class="mobile-counter">
+            <span class="count js-contrib-count">0</span>
+            <span>GitHub contributions</span>
+        </div-->
+    </div>
+
+    <!-- ═══ HERO — Full viewport, PFP on right ═══ -->
+    <section class="hero bg-red-textured" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <p class="hero-eyebrow">
+                        <span class="dot"></span>
+                        DATA SCIENTIST & DATA ANALYST & AI BUILDER
+                    </p>
+                    <h1 class="hero-heading">
+                        <span class="word">KONKOBO</span>
+                        <span class="word">Ulrich Arthur</span>
+                    </h1>
+                    <p class="hero-subline">I turn data into intelligent solutions that actually work — 
+                        from machine learning models and analytics to AI-powered applications. Building, 
+                        experimenting, and shipping one project at a time.
+</p>
+                    <!--div class="hero-ctas">
+                        <a href="#creator" class="btn btn-primary">Watch Me Build ↓</a>
+                        <a href="https://www.youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-secondary">YouTube ↗</a>
+                    </div-->
+                </div>
+                <!-- Hero PFP removed -->
+            </div>
+        </div>
+
+        <!-- Jane PFP — floats on right, above bg, below marquee -->
+        <div class="hero-pfp">
+            <img src="assets/images/profile.webp" alt="Ulrich Arthur" width="1024" height="1536" decoding="async"
+                fetchpriority="high">
+        </div>
+
+        <!-- Marquee scrolling text -->
+        <div class="hero-marquee">
+            <div class="hero-marquee-inner">
+                <span>Machine Learning</span>
+                <span>Power BI</span>
+                <span>RAG</span>
+                <span>AI-Builder</span>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-dot"></div>
+        </div>
+    </section>
+
+    <!-- ═══ ABOUT — Black background ═══ -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-left reveal">
+                    <p class="section-label"> About</p>
+                    <h2 class="heading-section">About Me</h2>
+                    <div class="about-body">
+                        <p>I'm Ulrich Arthur — a Data Science student and aspiring Machine Learning Engineer based in Lyon, France.
+                             I spend my days turning data and ideas into solutions that actually work, 
+                             from machine learning models and analytics dashboards to AI-powered applications and automation.</p>
+
+<p>I'm currently pursuing a Master's degree in Data Science at Université Claude Bernard Lyon 1. 
+    My engineering background gives me a strong foundation in Python, SQL, 
+    Machine Learning, Data Analytics, and software development. 
+    I've built projects ranging from credit scoring and customer churn prediction 
+    to Power BI dashboards, RAG chatbots, and MLOps pipelines.</p>
+
+<p>Beyond building models, I'm interested in everything that helps take data and AI projects from experimentation to production — APIs, Docker, MLflow, cloud infrastructure, and automation. I'm always learning, building, and documenting what I discover. Currently open to opportunities in Data Science, Machine Learning, AI, and MLOps.</p>
+                    </div>
+                    <!--div class="now-panel reveal">
+                        <p class="now-label">// Currently</p>
+                        <ul class="now-list">
+                            <li><span>Building</span> AI agents &amp; automations on the Claude / Anthropic stack</li>
+                            <li><span>Learning</span> Anthropic research, agent design &amp; tool use</li>
+                            <li><span>Reading</span> Anthropic's latest papers &amp; building in public</li>
+                        </ul>
+                    </div-->
+                    <!--div class="gh-stats reveal">
+                        <div class="stat-block"><div class="stat-number" id="gh-repos">12</div><div class="stat-label">Public Repos</div></div>
+                        <div class="stat-block"><div class="stat-number" id="gh-contribs">250</div><div class="stat-label">2026 Contributions</div></div>
+                        <div class="stat-block"><div class="stat-number" id="gh-streak">—</div><div class="stat-label">Longest Streak</div></div>
+                    </div-->
+                </div>
+                <div class="about-right reveal">
+                    <div class="about-photo">
+                        <img src="assets/images/portrait.jpeg" alt="Ulrich Arthur — Illustrated portrait"
+                            width="640" height="640" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </div>
+            <!--div class="gh-activity reveal">
+                <p class="section-label">// GitHub activity</p>
+                <div class="gh-heatmap" id="ghHeatmap" aria-label="GitHub contributions in 2026"></div>
+                <div class="gh-legend"><span>Less</span><span class="gh-cell l0"></span><span class="gh-cell l1"></span><span class="gh-cell l2"></span><span class="gh-cell l3"></span><span class="gh-cell l4"></span><span>More</span></div>
+            </div-->
+        </div>
+    </section>
+
+   <!-- ═══ CAPABILITIES — Bento grid of skill domains ═══ -->
+
+<section class="capabilities" id="capabilities">
+    <div class="container">
+        <div class="capabilities-header reveal">
+            <p class="section-label">Capabilities</p>
+            <h2 class="heading-section">What I Can Do</h2>
+            <p class="text-body">From data analysis and machine learning to AI applications and production-ready pipelines.</p>
+        </div>
+
+```
+    <div class="capabilities-grid">
+
+        <!-- Tile 1: HERO — Data Science & Machine Learning -->
+        <article class="capability-tile hero reveal" style="--cursor-x:50%;--cursor-y:50%;">
+            <i class="fas fa-brain capability-icon" aria-hidden="true"></i>
+            <h3 class="capability-title">Data Science &amp; Machine Learning</h3>
+            <p class="capability-desc">
+                Build predictive models and extract meaningful insights from data using statistical analysis and machine learning.
+            </p>
+            <div class="capability-tags">
+                <span class="tag">Python</span>
+                <span class="tag">scikit-learn</span>
+                <span class="tag">XGBoost</span>
+                <span class="tag">Pandas</span>
+            </div>
+        </article>
+
+        <!-- Tile 2: Data Analysis & BI added-->
+        <article class="capability-tile reveal" style="--cursor-x:50%;--cursor-y:50%;">
+            <i class="fas fa-chart-line capability-icon" aria-hidden="true"></i>
+            <h3 class="capability-title">Data Analysis &amp; BI</h3>
+            <p class="capability-desc">
+                Transform raw and complex datasets into clear insights, interactive dashboards, and data-driven decisions.
+            </p>
+            <div class="capability-tags">
+                <span class="tag">Power BI</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Excel</span>
+                <span class="tag">DAX</span>
+            </div>
+        </article>
+
+        <!-- Tile 3: AI & NLP -->
+        <article class="capability-tile reveal" style="--cursor-x:50%;--cursor-y:50%;">
+            <i class="fas fa-robot capability-icon" aria-hidden="true"></i>
+            <h3 class="capability-title">AI &amp; NLP</h3>
+            <p class="capability-desc">
+                Develop AI-powered applications including chatbots, RAG systems, and intelligent data-driven solutions.
+            </p>
+            <div class="capability-tags">
+                <span class="tag">LLMs</span>
+                <span class="tag">RAG</span>
+                <span class="tag">LangChain</span>
+                <span class="tag">ChromaDB</span>
+            </div>
+        </article>
+
+        <!-- Tile 4: MLOps & Deployment -->
+        <article class="capability-tile reveal" style="--cursor-x:50%;--cursor-y:50%;">
+            <i class="fas fa-cloud-arrow-up capability-icon" aria-hidden="true"></i>
+            <h3 class="capability-title">MLOps &amp; Deployment</h3>
+            <p class="capability-desc">
+                Take machine learning projects from experimentation to deployment with reproducible and automated workflows.
+            </p>
+            <div class="capability-tags">
+                <span class="tag">MLflow</span>
+                <span class="tag">Docker</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">GitHub Actions</span>
+            </div>
+        </article>
+
+        <!-- Tile 5: Cloud & Infrastructure -->
+        <article class="capability-tile reveal" style="--cursor-x:50%;--cursor-y:50%;">
+            <i class="fas fa-server capability-icon" aria-hidden="true"></i>
+            <h3 class="capability-title">Cloud &amp; Infrastructure</h3>
+            <p class="capability-desc">
+                Deploy applications and data solutions using cloud infrastructure, containers, automation, and modern DevOps practices.
+            </p>
+            <div class="capability-tags">
+                <span class="tag">AWS</span>
+                <span class="tag">Linux</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Terraform</span>
+            </div>
+        </article>
+
+        <!-- Tile 6: Data Engineering -->
+        <article class="capability-tile reveal" style="--cursor-x:50%;--cursor-y:50%;">
+            <i class="fas fa-database capability-icon" aria-hidden="true"></i>
+            <h3 class="capability-title">Data Engineering</h3>
+            <p class="capability-desc">
+                Work with databases, data integration, data quality, and pipelines to build reliable foundations for analytics and AI.
+            </p>
+            <div class="capability-tags">
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">SQL</span>
+                <span class="tag">ETL</span>
+                <span class="tag">Data Quality</span>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="capabilities-cta reveal">
+        <a href="https://github.com/arthurito15"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn-ghost">
+            See the work on GitHub →
+        </a>
+    </div>
+</div>
+```
+
+</section>
+
+
+<!-- ═══ EXPERIENCE ═══ -->
+
+<section class="experience" id="experience">
+    <div class="container">
+        <div class="experience-header reveal">
+            <p class="section-label">  Experience</p>
+            <h2 class="heading-section">Professional Experience</h2>
+        </div>
+
+```
+    <div class="timeline">
+
+        <!-- SVM Infotech -->
+        <div class="timeline-entry reveal">
+            <div class="timeline-dot pulse"></div>
+            <div class="timeline-card">
+                <div class="timeline-date">May 2025 — Jun 2025</div>
+                <div class="timeline-role">DevOps Intern</div>
+                <div class="timeline-company">SVM Infotech · India</div>
+                <div class="timeline-desc">
+                    Prepared and deployed business applications in production environments.
+                    Automated deployments and testing with Python and Bash, contributed to
+                    CI/CD pipelines and cloud deployments, and worked on application monitoring
+                    and technical documentation.
+                </div>
+            </div>
+        </div>
+
+        <!-- Freelancing -->
+        <div class="timeline-entry reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-date">2020 — 2023</div>
+                <div class="timeline-role">DevOps &amp; Full-Stack Developer</div>
+                <div class="timeline-company">Freelancing · IS International · India</div>
+                <div class="timeline-desc">
+                    Designed and developed 6+ dynamic web applications using PHP, SQL and Java.
+                    Worked on CI/CD and automated deployment, provided application support and
+                    troubleshooting, and collaborated in agile and multicultural environments.
+                </div>
+            </div>
+        </div>
+
+        <!-- Onatel -->
+        <div class="timeline-entry reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-date">Aug 2019 — Sep 2019</div>
+                <div class="timeline-role">Network &amp; Server Maintenance Intern</div>
+                <div class="timeline-company">Onatel · Burkina Faso</div>
+                <div class="timeline-desc">
+                    Monitored network infrastructure and analyzed TCP/IP performance data.
+                    Performed infrastructure maintenance, diagnostics and troubleshooting while
+                    working with technical teams to ensure service continuity.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+```
+
+</section>
+
+    <!-- ═══ CREATOR — YouTube / AI automation ═══ -->
+    <!--section class="creator" id="creator">
+        <div class="container">
+            <div class="creator-header reveal">
+                <p class="section-label">[JD-004] // Creator</p>
+                <h2 class="heading-section">Building in public with AI</h2>
+            </div>
+            <div class="creator-grid">
+                <div class="creator-left reveal">
+                    <p class="creator-channel-tag"><i class="fab fa-youtube"></i> Jane Builds</p>
+                    <p class="creator-body">My channel is the workshop. I take real problems, point <strong>Claude and
+                            the Anthropic stack</strong> at them, and record exactly how I get from "telling AI what to
+                        do" to something that actually ships — no faceless theory, just the build.</p>
+                    <p class="creator-body">Every video is downstream of reading <strong>Anthropic research</strong> and
+                        then trying it for real: agents, tool use, prompt design, and automations that save hours.
+                        Building in public, one video at a time.</p>
+                    <div class="creator-stats">
+                        <div class="stat-block">
+                            <div class="stat-number">1.2K</div>
+                            <div class="stat-label">Subscribers</div>
+                        </div>
+                        <div class="stat-block">
+                            <div class="stat-number">Claude</div>
+                            <div class="stat-label">Primary Stack</div>
+                        </div>
+                        <div class="stat-block">
+                            <div class="stat-number">Public</div>
+                            <div class="stat-label">Build Log</div>
+                        </div>
+                    </div>
+                    <div class="creator-ctas">
+                        <a href="https://www.youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-primary">Subscribe on YouTube ↗</a>
+                        <a href="https://www.youtube.com/@yourchannel/videos" target="_blank"
+                            rel="noopener noreferrer" class="btn btn-secondary">Watch the builds ↗</a>
+                    </div>
+                </div>
+                <div class="creator-right reveal">
+                    <a href="https://www.youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer"
+                        class="creator-card" aria-label="Jane Builds on YouTube">
+                        <div class="creator-card-glow"></div>
+                        <i class="fab fa-youtube creator-card-icon"></i>
+                        <div class="creator-card-handle">@yourchannel</div>
+                        <div class="creator-card-play"><i class="fas fa-play"></i></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section-->
+
+    <!-- ═══ SKILLS — Rotating Ribbon ═══ -->
+    <section class="skills bg-red-textured" id="skills">
+        <div class="container">
+            <div class="skills-header reveal">
+                <p class="section-label"> Skills</p>
+                <h2 class="heading-section">Technologies & Tools</h2>
+            </div>
+        </div>
+
+        <!-- Ribbon Row 1 — Left to Right -->
+        <div class="skills-ribbon-wrapper">
+            <div class="skills-ribbon" id="skillsRibbon1">
+                <span class="skill-ribbon-item"><i class="fab fa-python"></i> Python</span>
+                <span class="skill-ribbon-item"><i class="fas fa-database"></i> SQL</span>
+                <span class="skill-ribbon-item"><i class="fas fa-chart-bar"></i> Power BI</span>
+                <span class="skill-ribbon-item"><i class="fas fa-chart-pie"></i> Tableau</span>
+                <span class="skill-ribbon-item"><i class="fas fa-file-excel"></i> Excel (Advanced)</span>
+                <span class="skill-ribbon-item"><i class="fas fa-chart-line"></i> Data Analytics</span>
+                <span class="skill-ribbon-item"><i class="fas fa-brain"></i> TensorFlow</span>
+                <span class="skill-ribbon-item"><i class="fas fa-robot"></i> Scikit-learn</span>
+                <!-- Duplicate for seamless loop -->
+                <span class="skill-ribbon-item"><i class="fab fa-python"></i> Python</span>
+                <span class="skill-ribbon-item"><i class="fas fa-database"></i> SQL</span>
+                <span class="skill-ribbon-item"><i class="fas fa-chart-bar"></i> Power BI</span>
+                <span class="skill-ribbon-item"><i class="fas fa-chart-pie"></i> Tableau</span>
+                <span class="skill-ribbon-item"><i class="fas fa-file-excel"></i> Excel (Advanced)</span>
+                <span class="skill-ribbon-item"><i class="fas fa-chart-line"></i> Data Analytics</span>
+                <span class="skill-ribbon-item"><i class="fas fa-brain"></i> TensorFlow</span>
+                <span class="skill-ribbon-item"><i class="fas fa-robot"></i> Scikit-learn</span>
+            </div>
+        </div>
+
+        <!-- Ribbon Row 2 — Right to Left -->
+        <div class="skills-ribbon-wrapper">
+            <div class="skills-ribbon reverse" id="skillsRibbon2">
+                <span class="skill-ribbon-item"><i class="fas fa-cubes"></i> Pandas / NumPy</span>
+                <span class="skill-ribbon-item"><i class="fas fa-chart-area"></i> Matplotlib</span>
+                <span class="skill-ribbon-item"><i class="fab fa-html5"></i> HTML / CSS</span>
+                <span class="skill-ribbon-item"><i class="fab fa-js-square"></i> JavaScript</span>
+                <span class="skill-ribbon-item"><i class="fab fa-r-project"></i> R</span>
+                <span class="skill-ribbon-item"><i class="fab fa-git-alt"></i> Git / GitHub</span>
+                <span class="skill-ribbon-item"><i class="fas fa-cloud"></i> Oracle Cloud</span>
+                <span class="skill-ribbon-item"><i class="fab fa-google"></i> Google Cloud</span>
+                <!-- Duplicate for seamless loop -->
+                <span class="skill-ribbon-item"><i class="fas fa-cubes"></i> Pandas / NumPy</span>
+                <span class="skill-ribbon-item"><i class="fas fa-chart-area"></i> Matplotlib</span>
+                <span class="skill-ribbon-item"><i class="fab fa-html5"></i> HTML / CSS</span>
+                <span class="skill-ribbon-item"><i class="fab fa-js-square"></i> JavaScript</span>
+                <span class="skill-ribbon-item"><i class="fab fa-r-project"></i> R</span>
+                <span class="skill-ribbon-item"><i class="fab fa-git-alt"></i> Git / GitHub</span>
+                <span class="skill-ribbon-item"><i class="fas fa-cloud"></i> Oracle Cloud</span>
+                <span class="skill-ribbon-item"><i class="fab fa-google"></i> Google Cloud</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="skills-cta reveal">
+                <a href="https://www.linkedin.com/in/ulrich-arthur-konkobo/" target="_blank" rel="noopener noreferrer">
+                    View all my skills & endorsements on LinkedIn →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ EXPERIENCE ═══ -->
+     <!-- ═══ EDUCATION ═══ -->
+
+<section class="experience education" id="education">
+    <div class="container">
+        <div class="experience-header reveal">
+            <p class="section-label">[EDU-002] // Education</p>
+            <h2 class="heading-section">Academic Background</h2>
+        </div>
+
+```
+    <div class="timeline">
+
+        <!-- Lyon 1 -->
+        <div class="timeline-entry reveal">
+            <div class="timeline-dot pulse"></div>
+            <div class="timeline-card">
+                <div class="timeline-date">Sep 2025 — Jun 2027</div>
+                <div class="timeline-role">Master 2 Data Science</div>
+                <div class="timeline-company">Université Claude Bernard Lyon 1 · France</div>
+                <div class="timeline-desc">
+                    Master's degree focused on Data Science, data analysis, machine learning,
+                    statistical modelling, data visualization and intelligent data-driven
+                    solutions.
+                </div>
+            </div>
+        </div>
+
+        <!-- ITM -->
+        <div class="timeline-entry reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-date">Aug 2020 — Jul 2024</div>
+                <div class="timeline-role">Bachelor of Technology — Computer Science</div>
+                <div class="timeline-company">ITM University · India</div>
+                <div class="timeline-desc">
+                    Bac+4 engineering-level degree in Computer Science, providing a strong
+                    foundation in software development, databases, networking and computer
+                    systems.
+                </div>
+            </div>
+        </div>
+
+        <!-- ISGE BF -->
+        <div class="timeline-entry reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-date">Sep 2018 — Jan 2020</div>
+                <div class="timeline-role">Networks &amp; Telecommunications</div>
+                <div class="timeline-company">ISGE BF · Ouagadougou, Burkina Faso</div>
+                <div class="timeline-desc">
+                    Bac+2 program focused on computer networks, telecommunications,
+                    infrastructure and IT systems.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+```
+
+</section>
+
+
+<!-- ═══ CERTIFICATIONS ═══ -->
+
+<section class="certs-page bg-red-textured" id="certifications">
+    <div class="container">
+
+        <div class="certs-header reveal">
+            <p class="section-label">[AK-007] // Credentials</p>
+            <h2 class="heading-section">Licenses &amp; Certifications</h2>
+            <p class="text-body">
+                Professional certifications and courses covering machine learning,
+                data analysis, SQL, AI, and modern data technologies.
+            </p>
+        </div>
+
+        <div class="cert-grid">
+
+            <!-- Machine Learning with Python -->
+            <a href="https://www.coursera.org/account/accomplishments/records/MA5NAQ3CR7KR"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="cert-card reveal"
+               data-issuer="IBM">
+
+                <div class="cert-thumb">
+                    <i class="fas fa-brain" aria-hidden="true"></i>
+                </div>
+
+                <div class="cert-body">
+                    <h3 class="cert-name">Machine Learning with Python</h3>
+                    <p class="cert-issuer">IBM</p>
+                    <p class="cert-date">Issued Oct 2026</p>
+                    <p class="cert-id">Credential ID: MA5NAQ3CR7KR</p>
+                </div>
+
+                <span class="cert-arrow">↗</span>
+            </a>
+
+
+            <!-- Power BI -->
+            <a href="https://www.coursera.org/account/accomplishments/records/WEVGJ2V6JMOD"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="cert-card reveal"
+               data-issuer="Microsoft">
+
+                <div class="cert-thumb">
+                    <i class="fas fa-chart-column" aria-hidden="true"></i>
+                </div>
+
+                <div class="cert-body">
+                    <h3 class="cert-name">Data Analysis and Visualization with Power BI</h3>
+                    <p class="cert-issuer">Microsoft</p>
+                    <p class="cert-date">Issued Sep 2026</p>
+                    <p class="cert-id">Credential ID: WEVGJ2V6JMOD</p>
+                </div>
+
+                <span class="cert-arrow">↗</span>
+            </a>
+
+
+            <!-- Excel Copilot -->
+            <a href="https://www.coursera.org/account/accomplishments/records/0WA3QRHWS38K"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="cert-card reveal"
+               data-issuer="Microsoft">
+
+                <div class="cert-thumb">
+                    <i class="fas fa-file-excel" aria-hidden="true"></i>
+                </div>
+
+                <div class="cert-body">
+                    <h3 class="cert-name">
+                        Advanced Data Analysis &amp; Visualization with Copilot in Excel
+                    </h3>
+                    <p class="cert-issuer">Microsoft</p>
+                    <p class="cert-date">Issued Sep 2026</p>
+                    <p class="cert-id">Credential ID: 0WA3QRHWS38K</p>
+                </div>
+
+                <span class="cert-arrow">↗</span>
+            </a>
+
+
+            <!-- SQL Transactions -->
+            <a href="https://www.coursera.org/account/accomplishments/records/6J8PCZTCH6G4"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="cert-card reveal"
+               data-issuer="Microsoft">
+
+                <div class="cert-thumb">
+                    <i class="fas fa-database" aria-hidden="true"></i>
+                </div>
+
+                <div class="cert-body">
+                    <h3 class="cert-name">
+                        Data Manipulation and Transactions in SQL Server
+                    </h3>
+                    <p class="cert-issuer">Microsoft</p>
+                    <p class="cert-date">Issued Sep 2026</p>
+                    <p class="cert-id">Credential ID: 6J8PCZTCH6G4</p>
+                </div>
+
+                <span class="cert-arrow">↗</span>
+            </a>
+
+
+            <!-- Data Cleaning -->
+            <a href="https://www.coursera.org/account/accomplishments/records/04TO14XA6LA0"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="cert-card reveal"
+               data-issuer="Microsoft">
+
+                <div class="cert-thumb">
+                    <i class="fas fa-broom" aria-hidden="true"></i>
+                </div>
+
+                <div class="cert-body">
+                    <h3 class="cert-name">
+                        Data Cleaning &amp; Processing with Copilot in Excel
+                    </h3>
+                    <p class="cert-issuer">Microsoft</p>
+                    <p class="cert-date">Issued Sep 2026</p>
+                    <p class="cert-id">Credential ID: 04TO14XA6LA0</p>
+                </div>
+
+                <span class="cert-arrow">↗</span>
+            </a>
+
+
+            <!-- RAG Crash Course -->
+            <article class="cert-card reveal" data-issuer="KodeKloud">
+
+                <div class="cert-thumb">
+                    <i class="fas fa-robot" aria-hidden="true"></i>
+                </div>
+
+                <div class="cert-body">
+                    <h3 class="cert-name">
+                        YouTube Labs — RAG Crash Course
+                    </h3>
+                    <p class="cert-issuer">KodeKloud</p>
+                    <p class="cert-date">Issued May 2026</p>
+                    <p class="cert-id">
+                        Credential ID: 50ae4413-af38-4832-88a4-e2475232da33
+                    </p>
+                </div>
+
+            </article>
+
+        </div>
+
+       <p class="reveal" style="text-align: center; margin-top: var(--space-md);">
+                    <a href="certifications.html" class="btn-ghost">View all certifications →</a>
+                </p-->
+
+    </div>
+</section>
+
+
+
+    <!--section class="experience" id="experience">
+        <div class="container">
+            <div class="experience-header reveal">
+                <p class="section-label">[JD-005] // Experience</p>
+                <h2 class="heading-section">Journey So Far</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-entry reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Sep 2020 — Jun 2024</div>
+                        <div class="timeline-role">B.S. in Computer Science</div>
+                        <div class="timeline-company">State University</div>
+                        <div class="timeline-desc">Coursework in Data Analytics, Database Management, AI, and Prompt
+                            Engineering. Built full-stack apps and data-driven projects.</div>
+                    </div>
+                </div>
+                <div class="timeline-entry reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Apr 2022 — Apr 2024</div>
+                        <div class="timeline-role">Organizing Lead → Deputy Lead</div>
+                        <div class="timeline-company">Campus Tech Society</div>
+                        <div class="timeline-desc">Led and anchored 12+ technical events with 200+ participants. Managed
+                            a 10-member core team, coordinating planning, execution, and promotions.</div>
+                    </div>
+                </div>
+                <div class="timeline-entry reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">2024 — Present</div>
+                        <div class="timeline-role">Freelance Developer & Content Creator</div>
+                        <div class="timeline-company">Independent / Self-employed</div>
+                        <div class="timeline-desc">Built data dashboards and analytics tools for clients, shipped
+                            automation workflows, and created content while building in public.</div>
+                    </div>
+                </div>
+                <div class="timeline-entry reveal">
+                    <div class="timeline-dot pulse"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">2025 — Present</div>
+                        <div class="timeline-role">Open to Data Analyst / AI Roles</div>
+                        <div class="timeline-company">Actively Seeking Opportunities</div>
+                        <div class="timeline-desc">Seeking Data Analyst, Data Scientist, and AI Engineering positions.
+                            Certified in Oracle Cloud AI, Deloitte Data Analytics, and Harvard CS50 SQL.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section-->
+
+    <!-- ═══ CONTACT ═══ -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-header reveal">
+                    <p class="section-label"> Contact</p>
+                    <h2 class="heading-section">Let's Connect</h2>
+                    <p class="text-body" style="margin: 0 auto;">Have an opportunity or want to collaborate? Reach out.
+                    </p>
+                    <div class="contact-cv reveal">
+                        <a href="assets/resume.pdf" download class="btn btn-primary">Download CV ↓</a>
+                    </div>
+                </div>
+                <div class="social-links reveal" style="margin-top: var(--space-xl);">
+                    <a href="https://github.com/arthurito15" target="_blank" rel="noopener noreferrer"
+                        class="social-link">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                        <span class="roll-text"><span>GitHub</span><span>GitHub</span></span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ulrich-arthur-konkobo/" target="_blank" rel="noopener noreferrer"
+                        class="social-link">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                        <span class="roll-text"><span>LinkedIn</span><span>LinkedIn</span></span>
+                    </a>
+                    <a href="mailto:konkoboulricharthur@gmail.com" class="social-link">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                        <span class="roll-text"><span>Email</span><span>Email</span></span>
+                    </a>
+                    <!--a href="https://www.youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer"
+                        class="social-link">
+                        <i class="fab fa-youtube"></i>
+                        <span class="roll-text"><span>YouTube</span><span>YouTube</span></span>
+                    </a>
+                    <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer"
+                        class="social-link">
+                        <i class="fab fa-instagram"></i>
+                        <span class="roll-text"><span>Instagram</span><span>Instagram</span></span>
+                    </a>
+                    <a href="https://x.com/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-x-twitter"></i>
+                        <span class="roll-text"><span>X</span><span>X</span></span>
+                    </a-->
+                    <a href="https://discord.gg/yourinvite" target="_blank" rel="noopener noreferrer"
+                        class="social-link">
+                        <i class="fab fa-discord"></i>
+                        <span class="roll-text"><span>Discord</span><span>Discord</span></span>
+                    </a>
+                </div>
+                <!--div class="contact-divider reveal" style="margin-top: var(--space-xl);">
+                    <div class="line"></div>
+                    <span>Certifications</span>
+                    <div class="line"></div>
+                </div>
+                <div class="reveal"
+                    style="display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-sm); margin-top: var(--space-md);">
+                    <a href="certifications.html" class="tag tag-link">Oracle Cloud AI</a>
+                    <a href="certifications.html" class="tag tag-link">Oracle AI Vector Search</a>
+                    <a href="certifications.html" class="tag tag-link">Deloitte Data Analytics</a>
+                    <a href="certifications.html" class="tag tag-link">CS50 SQL</a>
+                    <a href="certifications.html" class="tag tag-link">GitHub Pro Certificate</a>
+                    <a href="certifications.html" class="tag tag-link">Microsoft Data Analysis</a>
+                    <a href="certifications.html" class="tag tag-link">Kaggle Python</a>
+                    <a href="certifications.html" class="tag tag-link">Power BI Essential</a>
+                    <a href="certifications.html" class="tag tag-link">Tableau Essential</a>
+                    <a href="certifications.html" class="tag tag-link">Cisco Data Analytics</a>
+                </div>
+                <p class="reveal" style="text-align: center; margin-top: var(--space-md);">
+                    <a href="certifications.html" class="btn-ghost">View all certifications →</a>
+                </p-->
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#hero" class="footer-logo">UlrichArthur</a>
+                <p class="footer-tagline"> Data scientist· data analyst · AI automation builder.</p>
+                <p class="footer-meta">Machine Learning &amp; AI.</p>
+            </div>
+            <nav class="footer-col" aria-label="Footer navigation">
+                <span class="footer-col-label">Navigate</span>
+                <a href="#about" class="footer-link">About</a>
+                <a href="#skills" class="footer-link">Skills</a>
+                <a href="#capabilities" class="footer-link">Capabilities</a>
+                <a href="#creator" class="footer-link">Creator</a>
+                <a href="#experience" class="footer-link">Experience</a>
+                <a href="certifications.html" class="footer-link">Certifications</a>
+                <a href="#contact" class="footer-link">Contact</a>
+            </nav>
+            <div class="footer-col">
+                <span class="footer-col-label">Social Media</span>
+                <div class="footer-socials">
+                    <a href="https://github.com/arthurito15" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/ulrich-arthur-konkobo/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a href="mailto:konkoboulricharthur@gmail.com" class="footer-social" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span class="footer-text">© <span id="year">2026</span> Ulrich Arthur</span>
+            <a href="#hero" class="footer-top-link">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
