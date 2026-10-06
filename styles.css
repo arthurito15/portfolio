@@ -77,7 +77,7 @@
 /* Dark cards sitting on a light-blue page keep white text here*/
 .cert-card {
     --text-primary: #FFFFFF;
-    --text-secondary: rgba(255, 255, 255, 0.72);
+    --text-secondary: rgb(255, 255, 255);
     --text-muted: rgba(255, 255, 255, 0.55);
     --accent: #FFFFFF;
     --border: rgba(255, 255, 255, 0.1);
