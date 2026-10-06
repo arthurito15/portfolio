@@ -2064,12 +2064,12 @@ body::before {
     font-size: var(--fs-caption);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--text-muted);
+    color: #FFFFFF;
     transition: color 0.3s;
 }
 
 .certs-back:hover {
-    color: var(--text-primary);
+    color: #FFFFFF;
 }
 
 .cert-grid {
